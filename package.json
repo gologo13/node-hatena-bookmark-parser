@@ -1,10 +1,10 @@
 {
-  "name": "hatena-search-data",
+  "name": "hatena-bookmar-parser",
   "version": "1.0.0",
-  "description": "Hatena Bookmark Data Parser",
+  "description": "Hatena Bookmark Parser",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha --require intelli-espower-loader -t 10000 test/fetch.js"
+    "test": "node_modules/.bin/mocha --require intelli-espower-loader -t 10000 tests/parse.js"
   },
   "keywords": [
     "Hatena",
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gologo13/node-hatena-search-data.git"
+    "url": "git://github.com/gologo13/node-hatena-bookmark-parser.git"
   },
   "bugs": {
-    "url": "https://github.com/mranney/node_redis/issues"
+    "url": "https://github.com/gologo13/node-hatena-Bookmark-parser/issues"
   },
   "license": "MIT",
   "devDependencies": {
@@ -29,6 +29,6 @@
     "power-assert": "^0.10.0"
   },
   "directories": {
-    "test": "test/"
+    "test": "tests/"
   }
 }

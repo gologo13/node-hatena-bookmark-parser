@@ -4,21 +4,21 @@ var http = require('http');
 var fs   = require('fs');
 
 /**
- * Fetch Hatena bookmarks data for the specified hatena user.
+ * Parse Hatena bookmarks data for the specified hatena user.
  *
  * @param {String} hatenaId hatena ID
  * @param {Function} cb callback
  */
-function fetch(hatenaId, source, cb) {
+function parse(hatenaId, source, cb) {
   if (Object.prototype.toString.call(source) === '[object Function]') {
     cb = source;
   }
 
   if (Object.prototype.toString.call(source) === '[object String]') {
-    return fetchFromFilePath(source, cb);
+    return parseFromFilePath(source, cb);
   } else {
     var Url = 'http://b.hatena.ne.jp/' + hatenaId + '/search.data';
-    return fetchFromWeb(Url, cb);
+    return parseFromWeb(Url, cb);
   }
 }
 
@@ -40,7 +40,7 @@ function fetch(hatenaId, source, cb) {
  * ]
  * ```
  */
-function parse(searchData) {
+function _parse(searchData) {
   var result = [];
 
   var bs = searchData.split('\n');
@@ -69,25 +69,25 @@ function parse(searchData) {
 }
 
 /**
- * fetch bookmark data from URL
+ * parse bookmark data from URL
  *
  * @param {String} filePath file path where search.data is located
  * @param {Function} cb callback
  */
-function fetchFromFilePath(filePath, cb) {
+function parseFromFilePath(filePath, cb) {
   fs.readFile(filePath, { encoding:'utf8' }, function(err, data) {
     if (err) return cb(err);
-    cb(null, parse(data));
+    cb(null, _parse(data));
   });
 }
 
 /**
- * fetch bookmark data from URL
+ * parse bookmark data from URL
  *
  * @param {String} Url search.data URL
  * @param {Function} cb callback
  */
-function fetchFromWeb(Url, cb) {
+function parseFromWeb(Url, cb) {
   http.get(Url, function(res) {
     var body = "";
 
@@ -102,7 +102,7 @@ function fetchFromWeb(Url, cb) {
       } else if (res.statusCode === 404) {
         error = new Error('not found');
       } else {
-        result = parse(body);
+        result = _parse(body);
       }
       cb(error, result);
     });
@@ -112,5 +112,5 @@ function fetchFromWeb(Url, cb) {
 }
 
 module.exports = {
-  fetch: fetch
+  parse: parse
 };
