@@ -4,7 +4,7 @@
   "description": "Hatena Bookmark Data Parser",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha --require intelli-espower-loader test/fetch.js"
+    "test": "node_modules/.bin/mocha --require intelli-espower-loader -t 10000 test/fetch.js"
   },
   "keywords": [
     "Hatena",
