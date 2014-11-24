@@ -96,7 +96,15 @@ function fetchFromWeb(Url, cb) {
       body += chunk;
     });
     res.on('end', function() {
-      cb(null, parse(body));
+      var error = null, result;
+      if (res.statusCode === 403) {
+        error = new Error('permission denied');
+      } else if (res.statusCode === 404) {
+        error = new Error('not found');
+      } else {
+        result = parse(body);
+      }
+      cb(error, result);
     });
   }).on('error', function(err) {
     cb(err);
