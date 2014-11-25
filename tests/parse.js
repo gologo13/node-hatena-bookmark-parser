@@ -1,33 +1,31 @@
 "use strict";
 
-var assert = require('power-assert');
 var fs = require('fs');
-var HSD = require('../');
+var assert = require('assert');
+var HSP = require('../');
 
 describe('Parse', function() {
-    describe('parse from the file path', function() {
-        it('should return parsed object of search.data', function(done) {
-          HSD.parse('dummy', process.cwd() + '/search.data', function(err, data) {
-            assert([
-                { title: 'Yahoo! JAPAN',
-                  comment: ' ',
-                  url: 'http://www.yahoo.co.jp',
-                  count: 12354 },
-                { title: 'Google',
-                  comment: 'this is google',
-                  url: 'http://www.google.com',
-                  count: 10000 }],
-                  data);
-            done();
-          });
-        });
-    });
-    describe('parse from the URL', function() {
-      it('should return error when private hatena account', function(done) {
-        HSD.parse('hyu_mu', function(err, data) {
-          assert('not found', err.message);
-          done();
-        });
+  describe('parse from the file path', function() {
+
+    it('should return parsed object of search.data', function(done) {
+      fs.readFile(__dirname+'/search.data', {encoding:'utf8'}, function(err, data) {
+        if (err) assert.fail(err.message);
+        var obj = [
+        { title: 'Yahoo! JAPAN',
+          comment: ' ',
+          url: 'http://www.yahoo.co.jp',
+          count: 12354,
+          date: new Date(2005, 1, 10, 18, 29, 36)},
+        { title: 'Google',
+          comment: 'this is google',
+          url: 'http://www.google.com',
+          count: 10000,
+          date: new Date(2005, 1, 10, 18, 28, 47)}
+        ];
+        assert.deepEqual(obj, HSP.parse(data));
+        done();
       });
     });
+  });
+
 });
