@@ -57,7 +57,6 @@ function parse(searchData) {
   if (bs[bs.length-1] === '') {
     bs = bs.slice(0,-1);
   }
-  var thresholdLinum = bs.length  / 4;
 
   while (result.length < bs.length) {
     var b = bs.slice(0, 3);

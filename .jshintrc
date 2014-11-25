@@ -1,0 +1,27 @@
+{
+  "strict" : true,
+  "indent" : 2,
+  "maxlen" : 125,
+  "unused" : true,
+
+  "latedef": false,
+  "esnext": true,
+
+  // global variables
+  "undef"   : true,
+  "browser" : true,
+  "dojo"    :  true,
+  "node"    :  true,
+  "devel"   : true,
+  "debug"   : true,
+  "globals" : {
+    "_": false,
+    "Backbone": false,
+    "it": false,
+    "describe": false
+  },
+
+  // Relaxing Options
+  "eqnull" : true,  // allow == null
+  "expr" : true    // allow x || (x = 1);
+}

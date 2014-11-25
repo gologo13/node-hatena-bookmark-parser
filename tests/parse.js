@@ -6,7 +6,9 @@ var HSP = require('../');
 
 describe('Parse', function() {
   it('should return parsed object of search.data', function(done) {
-    fs.readFile(__dirname+'/search.data', {encoding:'utf8'}, function(err, data) {
+
+    var opt = {encoding:'utf8'};
+    fs.readFile(__dirname+'/search.data', opt, function(err, data) {
       if (err) assert.fail(err.message);
       var obj = [
       { title: 'Yahoo! JAPAN',

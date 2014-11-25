@@ -4,7 +4,8 @@
   "description": "Hatena Bookmark Parser",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/.bin/mocha -t 10000 tests/parse.js tests/extractTags.js"
+    "lint": "node node_modules/.bin/jshint -c .jshintrc index.js tests/*.js && echo lint ok",
+    "test": "npm run lint && node node_modules/.bin/mocha -t 10000 tests/parse.js tests/extractTags.js"
   },
   "keywords": [
     "Hatena",
@@ -23,6 +24,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "jshint": "^2.5.10",
     "mocha": "^2.0.1"
   }
 }
