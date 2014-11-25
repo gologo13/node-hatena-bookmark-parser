@@ -4,7 +4,7 @@
   "description": "Hatena Bookmark Parser",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/.bin/mocha -t 10000 tests/parse.js"
+    "test": "node node_modules/.bin/mocha -t 10000 tests/parse.js tests/extractTags.js"
   },
   "keywords": [
     "Hatena",
