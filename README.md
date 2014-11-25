@@ -41,6 +41,9 @@ You can get the following console output.
     // bookmark comment. this maybe be empty if you didn't any comment
     "comment": "your comment.",
 
+    // tags in your comment. this maybe empty array if you didn't add any tag
+    "tags": [],
+
     // the page url
     "url": "http://www.yahoo.co.jp",
 

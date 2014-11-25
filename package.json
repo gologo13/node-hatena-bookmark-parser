@@ -1,6 +1,6 @@
 {
   "name": "hatena-bookmark-parser",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Hatena Bookmark Parser",
   "main": "index.js",
   "scripts": {
