@@ -1,25 +1,35 @@
 "use strict";
 
 var http = require('http');
-var fs   = require('fs');
 
 /**
- * Parse Hatena bookmarks data for the specified hatena user.
+ * Fetch and parse Hatena bookmark data for the specified hatena user.
  *
  * @param {String} hatenaId hatena ID
  * @param {Function} cb callback
  */
-function parse(hatenaId, source, cb) {
-  if (Object.prototype.toString.call(source) === '[object Function]') {
-    cb = source;
-  }
-
-  if (Object.prototype.toString.call(source) === '[object String]') {
-    return parseFromFilePath(source, cb);
-  } else {
-    var Url = 'http://b.hatena.ne.jp/' + hatenaId + '/search.data';
-    return parseFromWeb(Url, cb);
-  }
+function fetch(hatenaId, cb) {
+  var Url = 'http://b.hatena.ne.jp/' + hatenaId + '/search.data';
+  http.get(Url, function(res) {
+    var body = "";
+    res.setEncoding('utf8');
+    res.on('data', function(chunk) {
+      body += chunk;
+    });
+    res.on('end', function() {
+      var error = null, result;
+      if (res.statusCode === 403) {
+        error = new Error('permission denied');
+      } else if (res.statusCode === 404) {
+        error = new Error('not found');
+      } else {
+        result = parse(body);
+      }
+      cb(error, result);
+    });
+  }).on('error', function(err) {
+    cb(err);
+  });
 }
 
 /**
@@ -40,7 +50,7 @@ function parse(hatenaId, source, cb) {
  * ]
  * ```
  */
-function _parse(searchData) {
+function parse(searchData) {
   var result = [];
 
   var bs = searchData.split('\n');
@@ -68,49 +78,7 @@ function _parse(searchData) {
   return result;
 }
 
-/**
- * parse bookmark data from URL
- *
- * @param {String} filePath file path where search.data is located
- * @param {Function} cb callback
- */
-function parseFromFilePath(filePath, cb) {
-  fs.readFile(filePath, { encoding:'utf8' }, function(err, data) {
-    if (err) return cb(err);
-    cb(null, _parse(data));
-  });
-}
-
-/**
- * parse bookmark data from URL
- *
- * @param {String} Url search.data URL
- * @param {Function} cb callback
- */
-function parseFromWeb(Url, cb) {
-  http.get(Url, function(res) {
-    var body = "";
-
-    res.setEncoding('utf8');
-    res.on('data', function(chunk) {
-      body += chunk;
-    });
-    res.on('end', function() {
-      var error = null, result;
-      if (res.statusCode === 403) {
-        error = new Error('permission denied');
-      } else if (res.statusCode === 404) {
-        error = new Error('not found');
-      } else {
-        result = _parse(body);
-      }
-      cb(error, result);
-    });
-  }).on('error', function(err) {
-    cb(err);
-  });
-}
-
 module.exports = {
+  fetch: fetch,
   parse: parse
 };
