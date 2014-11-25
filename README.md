@@ -1,4 +1,4 @@
-hatena-bookmar-parser - Hatena Bookmark Parser Library
+hatena-bookmark-parser - Hatena Bookmark Parser Library
 ==================
 
 [![Build Status](https://travis-ci.org/gologo13/node-hatena-bookmark-parser.svg?branch=master)](https://travis-ci.org/gologo13/node-hatena-bookmark-parser.svg?branch=master)
