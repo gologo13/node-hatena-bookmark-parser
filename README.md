@@ -1,9 +1,9 @@
 hatena-bookmar-parser - Hatena Bookmark Parser Library
 ==================
 
-[![Build Status](https://travis-ci.org/gologo13/hatena-bookmark-parser.png?branch=master)](https://travis-ci.org/gologo13/node-hatena-bookmark-parser)
+[![Build Status](https://travis-ci.org/gologo13/node-hatena-bookmark-parser.svg?branch=master)](https://travis-ci.org/gologo13/node-hatena-bookmark-parser.svg?branch=master)
 
-[![NPM](https://nodei.co/npm/hatena-bookmar-parser.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hatena-bookmark-parser/)
+[![NPM](https://nodei.co/npm/hatena-bookmark-parser.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hatena-bookmark-parser/)
 
 ## Introduction
 
