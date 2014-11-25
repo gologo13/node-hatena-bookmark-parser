@@ -72,7 +72,8 @@ function parse(searchData) {
   for (var i = 0; i < bs.length; ++i) {
     var elems = bs[i].split('\t');
     result[i].count = parseInt(elems[0]);
-    result[i].date  = new Date(parseInt(elems[1]));
+    var d = ((/^(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/).exec(elems[1])||[]).slice(1);
+    result[i].date  = new Date(d[0], d[1]-1, d[2], d[3], d[4], d[5]);
   }
 
   return result;
