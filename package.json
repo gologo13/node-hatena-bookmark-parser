@@ -1,10 +1,10 @@
 {
-  "name": "hatena-bookmar-parser",
+  "name": "hatena-bookmark-parser",
   "version": "1.0.0",
   "description": "Hatena Bookmark Parser",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha -t 10000 tests/parse.js"
+    "test": "node node_modules/.bin/mocha -t 10000 tests/parse.js"
   },
   "keywords": [
     "Hatena",
@@ -24,8 +24,5 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "^2.0.1"
-  },
-  "directories": {
-    "test": "tests/"
   }
 }
