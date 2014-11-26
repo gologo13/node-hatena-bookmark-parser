@@ -23,8 +23,8 @@ $ npm install hatena-bookmark-parser
 Pass a Hatena ID whose bookmarks you want to download to ```fetch``` method.
 
 ```javascript
-var HSP = require('hatena-bookmark-parser');
-HSP.fetch('gologo13', function(err, data) {
+var HBP = require('hatena-bookmark-parser');
+HBP.fetch('gologo13', function(err, data) {
   if (err) return console.log(err);
   console.log(data);
 });
@@ -38,11 +38,11 @@ You can get the following console output.
     // the title of this page
     "title": "This is page title",
 
-    // bookmark comment. this maybe be empty if you didn't any comment
-    "comment": "your comment.",
+    // bookmark comment. this maybe be an empty string if you didn't any comment
+    "comment": "[yahoo][website]your comment.",
 
-    // tags in your comment. this maybe empty array if you didn't add any tag
-    "tags": [],
+    // tags in your comment. this maybe be an empty array if you didn't add any tag
+    "tags": ['yahoo', 'website'],
 
     // the page url
     "url": "http://www.yahoo.co.jp",
@@ -68,11 +68,11 @@ Second, use ```parse``` method after finish reading data.
 
 ```javascript
 var fs = require('fs');
-var HSP = require('hatena-bookmark-parser');
+var HBP = require('hatena-bookmark-parser');
 
 fs.readFile('~/search.data', {encoding:'utf8'}, function(err, data) {
   if (err) return console.log(err);
-  console.log(HSP.parse(data));
+  console.log(HBP.parse(data));
 });
 ```
 
