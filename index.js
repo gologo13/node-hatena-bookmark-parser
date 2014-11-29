@@ -9,6 +9,10 @@ var http = require('http');
  * @param {Function} cb callback
  */
 function fetch(hatenaId, cb) {
+  if (!hatenaId) {
+    throw new Error('hatena-bookmark-parser: hatenaId parameter is missing.');
+  }
+
   var Url = 'http://b.hatena.ne.jp/' + hatenaId + '/search.data';
   http.get(Url, function(res) {
     var body = "";
