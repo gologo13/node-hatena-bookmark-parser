@@ -22,7 +22,9 @@ function fetch(hatenaId, cb) {
     });
     res.on('end', function() {
       var error = null, result;
-      if (res.statusCode === 403) {
+      if (res.statusCode === 302) {
+        error = new Error('moved temporarily');
+      } else if (res.statusCode === 403) {
         error = new Error('permission denied');
       } else if (res.statusCode === 404) {
         error = new Error('not found');
